@@ -36,22 +36,33 @@ class BankAccount:
         else:
             print("Transferencia fallida.")
 
+class Interface:
+    def __init__(self,root,accounts):
+        self.root=root
+        self.accounts=accounts
+        self.current_account=None
+        cuenta_patito={
+        1224:BankAccount("Alberto","Rodriguez",1224,"Rare",1334,0.0),
+        7795:BankAccount("Eriberto","Perez",7795,"Rare",9577,1150.0),
+        5412: BankAccount("Karina", "López", 5412, "Premium", 4312, 300.0)
+        }
+        root=tk.Tk()
+        root.title("Banco patito: Inicio de Sesión")
 
-cuenta_patito=BankAccount("Alberto","Rodriguez",1224,"Rare",1334,0.0)
-root=tk.Tk()
-root.title("Banco patito")
+
+        frame= tk.Frame(root)
+        frame.pack(padx=15,pady=15)
+        label_nombre=tk.Label(frame,text=f"Titular: {cuenta_patito(1224).first_name}{cuenta_patito(1224).last_name}")
+        label_nombre.pack()
+
+        label_saldo= tk.Label(frame,text=f"Saldo actual: ${cuenta_patito.balance:.2f}")
+        label_saldo.pack(pady=5)
+
+        entry_monto=tk.Entry(frame)
+        entry_monto.pack(pady=5)
+        entry_monto.insert(0,"0.0")
 
 
-frame= tk.Frame(root)
-frame.pack(padx=15,pady=15)
-label_nombre=tk.Label(frame,text="Titular: {cuenta_patito.first_name}{cuenta_patito.last_name}")
-label_nombre.pack()
-
-label_saldo= tk.Label(frame,text="Saldo actual: ${cuenta_patito.balance:.2f}")
-label_saldo.pack(pady=5)
-
-entry_monto=tk.Entry(frame)
-entry_monto.pack(pady=5)
-entry_monto.insert(0,"0.0")
-
-btn_depositar=tk.Button(frame,text="Depositar:",command=depositar)
+        #btn_depositar=tk.Button(frame,text="Depositar:",command=deposit)
+        #btn_depositar.pack(side=tk.LEFT,padx=5,pady=5)
+        root.mainloop()
