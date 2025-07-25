@@ -1,3 +1,6 @@
+import tkinter as tk
+from tkinter import messagebox
+
 class BankAccount:
     def __init__(self,first_name,last_name,account_id,account_type,pin,balance):
         self.first_name= first_name
@@ -33,4 +36,22 @@ class BankAccount:
         else:
             print("Transferencia fallida.")
 
-            print("Transferencia fallida.")
+
+cuenta_patito=BankAccount("Alberto","Rodriguez",1224,"Rare",1334,0.0)
+root=tk.Tk()
+root.title("Banco patito")
+
+
+frame= tk.Frame(root)
+frame.pack(padx=15,pady=15)
+label_nombre=tk.Label(frame,text="Titular: {cuenta_patito.first_name}{cuenta_patito.last_name}")
+label_nombre.pack()
+
+label_saldo= tk.Label(frame,text="Saldo actual: ${cuenta_patito.balance:.2f}")
+label_saldo.pack(pady=5)
+
+entry_monto=tk.Entry(frame)
+entry_monto.pack(pady=5)
+entry_monto.insert(0,"0.0")
+
+btn_depositar=tk.Button(frame,text="Depositar:",command=depositar)
