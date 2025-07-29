@@ -111,6 +111,8 @@ class Interface:
             if self.login_button is not None:
                 self.login_button.destroy()
                 self.login_button = None
+
+
     def validate_pin(self):
         account = self.accounts[self.account_var.get()]
         pin_ingresado = self.pin_entry.get()
@@ -127,10 +129,18 @@ class Interface:
         for widget in self.login_frame.winfo_children():
             widget.destroy()
         self.login_frame.pack_forget()
+
+
+
     def show_balance(self): 
         balance = self.current_account.balance
         messagebox.showinfo("Saldo", f"El saldo actual es: ${balance:.2f}")
+
+
     def prepare_deposit(self):
+
+
+
         self.clear_operation_frame()
         self.operation_frame = tk.Frame(self.menu_frame)
         self.operation_frame.pack(pady=10)
@@ -138,6 +148,8 @@ class Interface:
         amount_entry = tk.Entry(self.operation_frame)
         amount_entry.pack()
         tk.Button(self.operation_frame, text="Confirmar", command=lambda: self.do_deposit(amount_entry)).pack(pady=5)
+
+
     def do_deposit(self, entry_widget):
         try:
             monto = float(entry_widget.get())
@@ -149,6 +161,8 @@ class Interface:
             self.clear_operation_frame()
         except ValueError:
             messagebox.showerror("Error", "Ingrese un monto válido.")
+
+
     def prepare_withdraw(self):
         self.clear_operation_frame()
         self.operation_frame = tk.Frame(self.menu_frame)
@@ -157,6 +171,8 @@ class Interface:
         amount_entry = tk.Entry(self.operation_frame)
         amount_entry.pack()
         tk.Button(self.operation_frame, text="Confirmar", command=lambda: self.do_withdraw(amount_entry)).pack(pady=5)
+
+
     def do_withdraw(self, entry_widget):
         try:
             monto = float(entry_widget.get())
@@ -173,6 +189,8 @@ class Interface:
                 messagebox.showerror("Error", "No fue posible realizar el retiro. Verifique el monto y el saldo.")
         except ValueError:
             messagebox.showerror("Error", "Ingrese un monto válido.")
+
+
     def prepare_transfer(self):
         self.clear_operation_frame()
         self.operation_frame = tk.Frame(self.menu_frame)
@@ -186,6 +204,8 @@ class Interface:
         amount_entry = tk.Entry(self.operation_frame)
         amount_entry.pack()
         tk.Button(self.operation_frame, text="Confirmar", command=lambda: self.do_transfer(account_var,amount_entry)).pack(pady=5)
+
+
     def do_transfer(self, cuenta_var, entry_widget):
         cuenta_destino_key = cuenta_var.get()
         if not cuenta_destino_key:
@@ -208,6 +228,8 @@ class Interface:
             self.clear_operation_frame()
         except ValueError:
             messagebox.showerror("Error", "Ingrese un monto válido.")
+
+
     def show_history(self):
         self.clear_operation_frame()
         self.operation_frame = tk.Frame(self.menu_frame)
@@ -229,6 +251,8 @@ class Interface:
         if hasattr(self, "operation_frame") and self.operation_frame:
             self.operation_frame.destroy()
             self.operation_frame = None
+
+            
     def show_menu(self):
         self.menu_frame = tk.Frame(self.root)
         self.menu_frame.pack(padx=10, pady=10)
